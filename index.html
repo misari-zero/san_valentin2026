@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Gianella ❤️</title>
+    <style>
+        /* CSS - ESTILOS BASE (PC y general) */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 500px; /* Evita que sea gigantesco en PC */
+            box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+        }
+
+        h1 {
+            color: #d63384;
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        #yesBtn {
+            background-color: #ff4757;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff6b81;
+        }
+
+        #noBtn {
+            background-color: #f1f2f6;
+            color: #2f3542;
+            position: relative;
+        }
+
+        #backBtn {
+            background-color: #7bed9f;
+            color: #2f3542;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(123, 237, 159, 0.3);
+        }
+
+        #backBtn:hover {
+            transform: scale(1.05);
+            background-color: #2ed573;
+        }
+
+        .cute-gif {
+            width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        /* Animación de corazones cayendo */
+        .heart {
+            position: absolute;
+            top: -10vh;
+            color: #ff4757;
+            font-size: 2rem;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =========================================
+           DISEÑO RESPONSIVE (Tablets y Celulares)
+           ========================================= */
+           
+        /* Pantallas medianas (Tablets, hasta 768px) */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 1.5rem; }
+            p { font-size: 1.1rem; }
+            button { padding: 12px 25px; font-size: 1.1rem; }
+            .cute-gif { width: 130px; }
+        }
+
+        /* Pantallas pequeñas (Celulares, hasta 480px) */
+        @media (max-width: 480px) {
+            .container { padding: 25px 15px; }
+            h1 { font-size: 2.2rem; margin-bottom: 5px; }
+            h2 { font-size: 1.3rem; }
+            p { font-size: 1rem; margin-bottom: 20px; }
+            
+            .buttons { gap: 10px; }
+            button { padding: 10px 20px; font-size: 1rem; }
+            
+            .cute-gif { width: 110px; }
+            #celebration img { width: 150px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <img src="https://media.giphy.com/media/c76IJLufpNwSULPk77/giphy.gif" alt="Cute Bear" class="cute-gif">
+        
+        <h1>Hola, Gianella</h1>
+        <p>Tengo una pregunta muy importante...</p>
+        <h2>¿Quieres ser mi San Valentín? ❤️</h2>
+        
+        <div class="buttons">
+            <button id="yesBtn">¡Sí, claro!</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="celebration">
+        <h1>¡Sabía que dirías que sí! 😍</h1>
+        <p>Te quiero mucho, Gianella. Prepárate para el mejor 14 de febrero.</p>
+        <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Celebration" class="cute-gif" style="width: 200px;">
+        <br>
+        <button id="backBtn">Regresar al inicio 🔄</button>
+    </div>
+
+    <script>
+        // JAVASCRIPT - LÓGICA DINÁMICA
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const backBtn = document.getElementById('backBtn');
+        const mainCard = document.getElementById('mainCard');
+        const celebration = document.getElementById('celebration');
+        
+        let heartIntervalId;
+
+        // 1. Lógica del botón "No" que se escapa
+        const moveButton = () => {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            // Evitamos que el botón se salga de los márgenes de la pantalla
+            const padding = 20; 
+            
+            noBtn.style.position = 'fixed'; 
+            
+            const newX = Math.max(padding, Math.random() * (windowWidth - btnWidth - padding));
+            const newY = Math.max(padding, Math.random() * (windowHeight - btnHeight - padding));
+
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+            noBtn.style.zIndex = '100'; // Asegura que quede por encima de todo
+        };
+
+        // Escucha para mouse y pantallas táctiles
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Evita clics accidentales en celular
+            moveButton();
+        });
+
+        // 2. Lógica del botón "Sí"
+        yesBtn.addEventListener('click', () => {
+            mainCard.classList.add('hidden');
+            celebration.classList.remove('hidden');
+            createHeartRain();
+        });
+
+        // 3. Lógica del botón "Regresar al inicio"
+        backBtn.addEventListener('click', () => {
+            clearInterval(heartIntervalId);
+            
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach(heart => heart.remove());
+
+            celebration.classList.add('hidden');
+            mainCard.classList.remove('hidden');
+
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+            noBtn.style.zIndex = 'auto';
+        });
+
+        // 4. Función para crear lluvia de corazones
+        function createHeartRain() {
+            heartIntervalId = setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                
+                const size = Math.random() * 2 + 1; 
+                heart.style.fontSize = size + 'rem';
+                
+                const duration = Math.random() * 2 + 3; 
+                heart.style.animationDuration = duration + 's';
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, duration * 1000);
+
+            }, 200); 
+        }
+    </script>
+</body>
+</html>
